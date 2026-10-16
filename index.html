@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #ffd700;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+        }
+
+        /* Navigation Styles */
+        .navbar {
+            background-color: var(--white);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 100px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .nav-links .login-btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+
+        .nav-links .login-btn:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        .hamburger {
+            display: block;
+            cursor: pointer;
+            z-index: 1002;
+            padding: 10px;
+            margin-left: 2rem;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                width: 280px;
+            }
+        }
+
+        /* Our Story Section Styling */
+        .our-story {
+            padding: 6rem 5%;
+            background-color: var(--white);
+            position: relative;
+            overflow: hidden;
+            margin-top: 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .our-story::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            opacity: 0.7;
+        }
+
+        .story-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .our-story h2 {
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            font-weight: 700;
+        }
+
+        .our-story h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--secondary-color);
+        }
+
+        .story-content {
+            text-align: left;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #333;
+            padding: 0 2rem;
+        }
+
+        .story-content p {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .story-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .our-story {
+                padding: 4rem 5%;
+            }
+
+            .our-story h2 {
+                font-size: 2.2rem;
+            }
+
+            .story-content {
+                font-size: 1.1rem;
+                line-height: 1.6;
+                padding: 0 1rem;
+            }
+        }
+
+        .hero {
+            background: linear-gradient(rgba(26, 35, 126, 0.6), rgba(26, 35, 126, 0.6)), url('https://www.cmrit.ac.in/wp-content/uploads/2021/07/about_overview-1.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 1rem;
+            margin-top: -20px;
+        }
+
+        .hero-content {
+            color: var(--white);
+            max-width: 800px;
+            padding: 2rem;
+            margin-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            font-size: 1.6rem;
+            margin-bottom: 2.5rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            font-weight: 500;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            border: 2px solid var(--secondary-color);
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+        }
+
+        /* Features Section Styling */
+        .features {
+            padding: 5rem 5%;
+            background-color: var(--white);
+        }
+
+        .features h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        .features h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #eee;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .feature-card a.card-link {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .feature-card .content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover i {
+            transform: scale(1.2);
+            color: var(--secondary-color);
+        }
+
+        .feature-card h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .feature-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0;
+            text-align: left;
+        }
+
+        .feature-card ul li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #666;
+        }
+
+        .feature-card ul li:before {
+            content: '•';
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            position: absolute;
+            left: 0;
+        }
+
+        .feature-card .learn-more {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card .learn-more i {
+            font-size: 1rem;
+            margin-left: 0.5rem;
+            margin-bottom: 0;
+        }
+
+        .feature-card .learn-more:hover {
+            color: var(--secondary-color);
+        }
+
+        .feature-card .learn-more:hover i {
+            transform: translateX(5px);
+        }
+
+        .feature-card .learn-more:hover {
+            color: var(--secondary-color);
+        }
+
+        .feature-card .learn-more:hover i {
+            transform: translateX(5px);
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+                padding: 0.5rem;
+            }
+        }
+
+        /* Events Section Styling */
+        .events {
+            padding: 5rem 5%;
+            background-color: var(--light-gray);
+        }
+
+        .events h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        .events h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .event-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            padding: 2rem;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-details h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-date {
+            color: var(--secondary-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .event-details p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .event-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .event-link i {
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .event-link:hover {
+            color: var(--secondary-color);
+        }
+
+        .event-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Announcement Section Styling */
+        .announcement {
+            padding: 5rem 5%;
+            background-color: var(--white);
+        }
+
+        .announcement-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .announcement-image {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .announcement-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .announcement-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .announcement-content {
+            padding: 2rem;
+        }
+
+        .announcement-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .announcement-content h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .announcement-date {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .announcement-description {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .announcement-details {
+            margin-bottom: 2rem;
+        }
+
+        .announcement-details p {
+            color: #666;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 968px) {
+            .announcement-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .announcement-content {
+                padding: 1rem 0;
+            }
+
+            .announcement-content h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* More Events Section Styling */
+        .more-events {
+            padding: 5rem 5%;
+            background-color: var(--light-gray);
+        }
+
+        .more-events-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .more-events h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .more-events h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        .events-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .events-cards .event-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .events-cards .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .events-cards .event-image {
+            position: relative;
+            height: 250px;
+        }
+
+        .events-cards .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .event-header {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .event-date {
+            text-align: center;
+            min-width: 100px;
+            padding: 10px;
+            background: var(--primary-color);
+            color: var(--white);
+            border-radius: 10px;
+        }
+
+        .event-date .month {
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .event-date .day {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1;
+            margin: 5px 0;
+        }
+
+        .event-date .year {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .event-main {
+            flex: 1;
+        }
+
+        .event-schedule {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .event-schedule span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .event-meta {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            padding: 1rem 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .meta-item i {
+            color: var(--primary-color);
+        }
+
+        .register-btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--primary-color);
+            color: var(--white);
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .register-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .event-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .event-content {
+            padding: 2rem;
+        }
+
+        .event-content h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .event-description {
+            color: #666;
+            line-height: 1.6;
+            margin: 1rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .event-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .event-date {
+                margin: 0 auto;
+            }
+
+            .event-meta {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .navbar .logo img {
+            height: 60px;
+            width: auto;
+            mix-blend-mode: multiply;
+            filter: contrast(1);
+        }
+
+        .navbar .logo h1 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .navbar .logo img {
+                height: 45px;
+            }
+            .navbar .logo h1 {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Add these styles in the style section */
+        .gallery-section {
+            padding: 6rem 5%;
+            background-color: var(--light-gray);
+            position: relative;
+        }
+
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-section h2 {
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .gallery-section h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--secondary-color);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        .gallery-caption h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-caption p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-section {
+                padding: 4rem 5%;
+            }
+
+            .gallery-section h2 {
+                font-size: 2.2rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+        }
+
+        /* Mobile Menu Styles */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background-color: var(--white);
+            z-index: 1001;
+            transition: right 0.3s ease;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+            padding-top: 80px;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mobile-menu li {
+            border-bottom: 1px solid #eee;
+        }
+
+        .mobile-menu a {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu a i {
+            margin-right: 1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .mobile-menu a:hover {
+            background-color: var(--light-gray);
+            color: var(--secondary-color);
+        }
+
+        .mobile-menu #mobileAuthLink a {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .mobile-menu #mobileAuthLink a:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        /* Overlay for mobile menu */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+        }
+
+        .menu-overlay.active {
+            display: block;
+        }
+
+        /* Add these styles for the footer */
+        .footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 4rem 5% 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .footer-section ul li a:before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--secondary-color);
+            transform: translateX(10px);
+        }
+
+        .footer-section ul li a:hover:before {
+            opacity: 1;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--white);
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-section p {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-section p i {
+            color: var(--secondary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .footer {
+                padding: 3rem 5% 1.5rem;
+            }
+
+            .footer-content {
+                gap: 2rem;
+            }
+
+            .footer-section h3 {
+                font-size: 1.3rem;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>    
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Cmrit.png" alt="logo">
+            <h1>Alumni Portal</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="directory.html">Directory</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li id="authLink"><a href="login.html" class="login-btn">Login</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+            <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
+            <li><a href="testimonials.html"><i class="fas fa-quote-right"></i> Testimonials</a></li>
+            <li><a href="academics.html"><i class="fas fa-graduation-cap"></i> Academics</a></li>
+            <li><a href="placements.html"><i class="fas fa-briefcase"></i> Placements</a></li>
+            <li><a href="blogs.html"><i class="fas fa-blog"></i> Blogs</a></li>
+            <li><a href="directory.html"><i class="fas fa-address-book"></i> Directory</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li id="mobileAuthLink"><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+        </ul>
+    </div>
+
+    <div class="menu-overlay"></div>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Welcome to CMRIT Alumni Portal</h1>
+            <p>Connect, Share, and Grow with Fellow Alumni</p>
+            <a href="signup.html" class="cta-button">Join Now</a>
+        </div>
+    </header>
+
+    <!-- Our Story Section -->
+    <section class="our-story">
+        <div class="story-container">
+            <h2>Our Story</h2>
+            <div class="story-content">
+                <p>Every journey begins with a shared starting point — and ours began within the classrooms, corridors, and campus that shaped who we are today.</p>
+                
+                <p>What started as a vibrant student community grew into something far greater: a family of dreamers, doers, and leaders spread across the globe. Over the years, as batches passed out and life took us in different directions, the bond we built during those formative years remained unshaken.</p>
+                
+                <p>This platform is not just a digital space — it's a living timeline of our shared legacy.</p>
+                
+                <p>It carries the stories of friendships that turned into partnerships, mentors who inspired future changemakers, and alumni who continue to raise the flag of our institution high in every field imaginable.</p>
+                
+                <p>As we continue to evolve, we carry our roots with pride. This is our story — and it's still being written by every one of us.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Announcement Section -->
+    <section class="announcement">
+        <div class="announcement-container">
+            <div class="announcement-image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxlmQz5RGGGMJigzJwCYTGVRBsYbvXRYnvdQ&s" alt="Annual Alumni Meetup 2025">
+            </div>
+            <div class="announcement-content">
+                <span class="announcement-tag">Upcoming Event</span>
+                <h2>Annual Alumni Meetup 2025</h2>
+                <p class="announcement-date"><i class="fas fa-calendar-alt"></i> June 14, 2025</p>
+                <p class="announcement-description">Join us for an exciting evening of networking, knowledge sharing, and reconnecting with your fellow alumni. This year's meetup promises to be bigger and better than ever!</p>
+                <div class="announcement-details">
+                    <p><i class="fas fa-map-marker-alt"></i> Main Campus Auditorium</p>
+                    <p><i class="fas fa-clock"></i> 10:00 AM - 3:00 PM</p>
+                </div>
+                <a href="events.html" class="cta-button">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Features Section -->
+    <section class="features">
+        <h2>What We Offer</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <a href="directory.html" class="card-link" aria-label="Go to Network page"></a>
+                <div class="content">
+                    <i class="fas fa-users"></i>
+                    <h3>Network</h3>
+                    <p>Connect with alumni across the globe through our extensive networking platform.</p>
+                    <ul>
+                        <li>Professional networking events</li>
+                        <li>Industry-specific groups</li>
+                        <li>Mentorship programs</li>
+                    </ul>
+                    <a href="directory.html" class="learn-more">View Directory <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="feature-card">
+                <a href="resources.html" class="card-link" aria-label="Go to Resources page"></a>
+                <div class="content">
+                    <i class="fas fa-book-reader"></i>
+                    <h3>Resources & Publications</h3>
+                    <p>Access exclusive alumni resources, newsletters, and college publications.</p>
+                    <ul>
+                        <li>Alumni Success Stories</li>
+                        <li>College Newsletters</li>
+                        <li>Research Publications</li>
+                    </ul>
+                    <a href="http://203.201.63.46:8080/jspui/" class="learn-more">View Resources <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="feature-card">
+                <a href="events.html" class="card-link" aria-label="Go to Events page"></a>
+                <div class="content">
+                    <i class="fas fa-star"></i>
+                    <h3>Events</h3>
+                    <p>Stay connected with your alma mater through exciting events and gatherings.</p>
+                    <ul>
+                        <li>Annual reunions</li>
+                        <li>Professional workshops</li>
+                        <li>Cultural celebrations</li>
+                    </ul>
+                    <a href="events.html" class="learn-more">View Events <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events Section -->
+    <section class="more-events">
+        <div class="more-events-container">
+            <h2>Upcoming Events</h2>
+            <div class="events-cards">
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=800" alt="Sports Tournament">
+                        <div class="event-tag">Sports</div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-header">
+                            <div class="event-date">
+                                <div class="month">July</div>
+                                <div class="day">12</div>
+                                <div class="year">2024</div>
+                            </div>
+                            <div class="event-main">
+                                <h3>Alumni Cricket Tournament</h3>
+                                <p class="event-schedule">
+                                    <span><i class="far fa-clock"></i> 9:00 AM onwards</span>
+                                    <span><i class="fas fa-map-marker-alt"></i> College Sports Ground</span>
+                                </p>
+                            </div>
+                        </div>
+                        <p class="event-description">Join us for an exciting cricket tournament! Form your batch teams and compete for the Alumni Championship Trophy. Refreshments and lunch will be provided.</p>
+                        <div class="event-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-users"></i>
+                                <span>32 Teams Max</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-trophy"></i>
+                                <span>Cash Prizes</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-utensils"></i>
+                                <span>Lunch Included</span>
+                            </div>
+                        </div>
+                        <a href="events.html" class="register-btn">Register Your Team</a>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800" alt="Career Networking Night">
+                        <div class="event-tag">Networking</div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-header">
+                            <div class="event-date">
+                                <div class="month">July</div>
+                                <div class="day">20</div>
+                                <div class="year">2025</div>
+                            </div>
+                            <div class="event-main">
+                                <h3>Career Networking Night</h3>
+                                <p class="event-schedule">
+                                    <span><i class="far fa-clock"></i> 6:00 PM - 9:00 PM</span>
+                                    <span><i class="fas fa-map-marker-alt"></i> Innovation Hub</span>
+                                </p>
+                            </div>
+                        </div>
+                        <p class="event-description">An exclusive networking event for alumni to connect with industry leaders and explore career opportunities. Includes panel discussions, one-on-one mentoring sessions, and networking opportunities.</p>
+                        <div class="event-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-handshake"></i>
+                                <span>Industry Leaders</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-comments"></i>
+                                <span>Panel Discussion</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-coffee"></i>
+                                <span>Refreshments</span>
+                            </div>
+                        </div>
+                        <a href="events.html" class="register-btn">Book Your Spot</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="directory.html">Directory</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/CMRITSpeaks/"><i class="fab fa-facebook"></i></a>
+                    <a href="https://x.com/cmrit_bengaluru?lang=en"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/showcase/cmrit-alumni-association/"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/cmrit.bangalore/?hl=en"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>Email: info@cmrit.ac.in</p>
+                <p>Phone: +91 80 2852 4466</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Alumni Portal. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const menuOverlay = document.querySelector('.menu-overlay');
+        const body = document.body;
+
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            body.style.overflow = body.style.overflow === 'hidden' ? '' : 'hidden';
+        });
+
+        menuOverlay.addEventListener('click', function() {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            body.style.overflow = '';
+        });
+
+        // Check authentication status for both desktop and mobile
+        function checkAuth() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const authLink = document.getElementById('authLink');
+            const mobileAuthLink = document.getElementById('mobileAuthLink');
+            
+            if (currentUser) {
+                authLink.innerHTML = `
+                    <a href="#" class="login-btn" onclick="logout()">Logout</a>
+                `;
+                mobileAuthLink.innerHTML = `
+                    <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                `;
+            } else {
+                authLink.innerHTML = `
+                    <a href="login.html" class="login-btn">Login</a>
+                `;
+                mobileAuthLink.innerHTML = `
+                    <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+                `;
+            }
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.reload();
+        }
+
+        // Check auth status when page loads
+        document.addEventListener('DOMContentLoaded', checkAuth);
+    </script>
+</body>
+</html>

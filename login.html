@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Alumni Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(26, 35, 126, 0.7), rgba(26, 35, 126, 0.7)), url('https://www.cmrit.ac.in/wp-content/uploads/2021/07/about_overview-1.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 2rem;
+        }
+
+        .login-form {
+            background-color: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-form h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(26, 35, 126, 0.1);
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .login-form button:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .form-footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .form-footer a:hover {
+            color: var(--secondary-color);
+        }
+
+        .home-link {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            background-color: var(--secondary-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+
+        .home-link i {
+            margin-right: 0.5rem;
+        }
+
+        .home-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .login-form {
+                padding: 2rem;
+            }
+
+            .home-link {
+                top: 1rem;
+                left: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="home-link">
+        <i class="fas fa-arrow-left"></i>
+        Back to Home
+    </a>
+
+    <div class="login-container">
+        <form class="login-form" id="loginForm">
+            <h2>Welcome Back</h2>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+            <div class="form-footer">
+                <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+                <p><a href="#">Forgot password?</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function validateForm(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Get users from localStorage
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            
+            // Find user
+            const user = users.find(u => u.email === email && u.password === password);
+
+            if (user) {
+                // Store current user
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                
+                // Show success message
+                alert('Login successful! Welcome back.');
+                
+                // Redirect to home page
+                window.location.href = 'index.html';
+            } else {
+                alert('Invalid email or password!');
+            }
+        }
+
+        // Add event listener to form
+        document.getElementById('loginForm').addEventListener('submit', validateForm);
+
+        // Check if user is already logged in
+        window.onload = function() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (currentUser) {
+                // If already logged in, redirect to home page
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directory - Alumni Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .directory-hero {
+            background: linear-gradient(rgba(26, 35, 126, 0.7), rgba(26, 35, 126, 0.7)), url('https://www.cmrit.ac.in/wp-content/uploads/2021/07/Industry-connects-banner.png');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 80px;
+        }
+
+        .directory-content {
+            padding: 5rem 5%;
+        }
+
+        .directory-section {
+            margin-bottom: 4rem;
+        }
+
+        .directory-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .search-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid #eee;
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        .filter-select {
+            padding: 1rem 2rem;
+            border: 2px solid #eee;
+            border-radius: 25px;
+            font-size: 1rem;
+            color: #666;
+            background-color: var(--white);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .alumni-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .alumni-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .alumni-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .alumni-image {
+            position: relative;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .alumni-image img {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--white);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .alumni-batch {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+
+        .alumni-content {
+            padding: 2rem;
+        }
+
+        .alumni-name {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .alumni-role {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .alumni-details {
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-item i {
+            color: var(--primary-color);
+            width: 20px;
+        }
+
+        .connect-btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--primary-color);
+            color: var(--white);
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .connect-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .search-filters {
+                flex-direction: column;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .filter-select {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Cmrit.png" alt="logo">
+            <h1>Alumni Portal</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="directory.html" class="active">Directory</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li id="authLink"><a href="login.html" class="login-btn">Login</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="directory-hero">
+        <div class="hero-content">
+            <h1>Alumni Directory</h1>
+            <p>Connect with fellow alumni from around the world</p>
+        </div>
+    </header>
+
+    <!-- Directory Content -->
+    <main class="directory-content">
+        <section class="directory-section">
+            <h2>Find Alumni</h2>
+            <div class="search-filters">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search by name, company, or location...">
+                </div>
+                <select class="filter-select">
+                    <option value="">All Batches</option>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+                    <option value="2016">2016</option>
+                    <option value="2015">2015</option>
+                    <option value="2014">2014</option>
+                    <option value="2013">2013</option>
+                    <option value="2012">2012</option>
+                    <option value="2011">2011</option>
+                    <option value="2010">2010</option>
+                    <option value="2009">2009</option>
+                    <option value="2008">2008</option>
+                    <option value="2007">2007</option>
+                    <option value="2006">2006</option>
+                    <option value="2005">2005</option>
+                    <option value="2004">2004</option>
+                    <option value="2003">2003</option>
+                    <option value="2002">2002</option>
+                    <option value="2001">2001</option>
+                    <option value="2000">2000</option>
+                </select>
+                <select class="filter-select">
+                    <option value="">All Departments</option>
+                    <option value="cse">Computer Science</option>
+                    <option value="ece">Electronics</option>
+                    <option value="mech">Mechanical</option>
+                    <option value="civil">Civil</option>
+                </select>
+            </div>
+
+            <div class="alumni-grid">
+                <div class="alumni-card">
+                    <div class="alumni-image">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800" alt="Arya Agarwal">
+                        <div class="alumni-batch">2023</div>
+                    </div>
+                    <div class="alumni-content">
+                        <h3 class="alumni-name">Aryan Agarwal</h3>
+                        <p class="alumni-role">Software Engineer at Google</p>
+                        <div class="alumni-details">
+                            <div class="detail-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Computer Science</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Bangalore, India</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-briefcase"></i>
+                                <span>2 years experience</span>
+                            </div>
+                        </div>
+                        <a href="#" class="connect-btn">Connect</a>
+                    </div>
+                </div>
+
+                <div class="alumni-card">
+                    <div class="alumni-image">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800" alt="Gayana Amrutha">
+                        <div class="alumni-batch">2022</div>
+                    </div>
+                    <div class="alumni-content">
+                        <h3 class="alumni-name">Gayana Amrutha</h3>
+                        <p class="alumni-role">Product Manager at Microsoft</p>
+                        <div class="alumni-details">
+                            <div class="detail-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Electronics</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Hyderabad, India</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-briefcase"></i>
+                                <span>3 years experience</span>
+                            </div>
+                        </div>
+                        <a href="#" class="connect-btn">Connect</a>
+                    </div>
+                </div>
+
+                <div class="alumni-card">
+                    <div class="alumni-image">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800" alt="Prathik Shetty">
+                        <div class="alumni-batch">2021</div>
+                    </div>
+                    <div class="alumni-content">
+                        <h3 class="alumni-name">Prathik Shetty</h3>
+                        <p class="alumni-role">Data Scientist at Amazon</p>
+                        <div class="alumni-details">
+                            <div class="detail-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Computer Science</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Seattle, USA</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-briefcase"></i>
+                                <span>4 years experience</span>
+                            </div>
+                        </div>
+                        <a href="#" class="connect-btn">Connect</a>
+                    </div>
+                </div>
+
+                <div class="alumni-card">
+                    <div class="alumni-image">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800" alt="Jhanavi Shetty">
+                        <div class="alumni-batch">2023</div>
+                    </div>
+                    <div class="alumni-content">
+                        <h3 class="alumni-name">Jhanavi Shetty</h3>
+                        <p class="alumni-role">UX Designer at Adobe</p>
+                        <div class="alumni-details">
+                            <div class="detail-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Information Science</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>San Francisco, USA</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-briefcase"></i>
+                                <span>1 year experience</span>
+                            </div>
+                        </div>
+                        <a href="#" class="connect-btn">Connect</a>
+                    </div>
+                </div>
+
+                <div class="alumni-card">
+                    <div class="alumni-image">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800" alt="Amir Roy">
+                        <div class="alumni-batch">2022</div>
+                    </div>
+                    <div class="alumni-content">
+                        <h3 class="alumni-name">Amir Roy</h3>
+                        <p class="alumni-role">DevOps Engineer at IBM</p>
+                        <div class="alumni-details">
+                            <div class="detail-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Computer Science</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Bangalore, India</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-briefcase"></i>
+                                <span>2 years experience</span>
+                            </div>
+                        </div>
+                        <a href="#" class="connect-btn">Connect</a>
+                    </div>
+                </div>
+
+                <div class="alumni-card">
+                    <div class="alumni-image">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800" alt="Rajeev Singh">
+                        <div class="alumni-batch">2021</div>
+                    </div>
+                    <div class="alumni-content">
+                        <h3 class="alumni-name">Rajeev Singh</h3>
+                        <p class="alumni-role">Project Manager at Infosys</p>
+                        <div class="alumni-details">
+                            <div class="detail-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Mechanical</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Mumbai, India</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-briefcase"></i>
+                                <span>3 years experience</span>
+                            </div>
+                        </div>
+                        <a href="#" class="connect-btn">Connect</a>
+                    </div>
+                </div>
+
+                <div class="alumni-card">
+                    <div class="alumni-image">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800" alt="Poornima Murthy">
+                        <div class="alumni-batch">2023</div>
+                    </div>
+                    <div class="alumni-content">
+                        <h3 class="alumni-name">Poornima Murthy</h3>
+                        <p class="alumni-role">Research Scientist at Intel</p>
+                        <div class="alumni-details">
+                            <div class="detail-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Electronics</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Bangalore, India</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-briefcase"></i>
+                                <span>1 year experience</span>
+                            </div>
+                        </div>
+                        <a href="#" class="connect-btn">Connect</a>
+                    </div>
+                </div>
+
+                <div class="alumni-card">
+                    <div class="alumni-image">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800" alt="Gowri Kumari">
+                        <div class="alumni-batch">2014</div>
+                    </div>
+                    <div class="alumni-content">
+                        <h3 class="alumni-name">Gowri Kumari</h3>
+                        <p class="alumni-role">Senior Software Architect at Oracle</p>
+                        <div class="alumni-details">
+                            <div class="detail-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Computer Science</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Bangalore, India</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-briefcase"></i>
+                                <span>9 years experience</span>
+                            </div>
+                        </div>
+                        <a href="#" class="connect-btn">Connect</a>
+                    </div>
+                </div>
+
+                <div class="alumni-card">
+                    <div class="alumni-image">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800" alt="Bhavya Shetty">
+                        <div class="alumni-batch">2009</div>
+                    </div>
+                    <div class="alumni-content">
+                        <h3 class="alumni-name">Bhavya Shetty</h3>
+                        <p class="alumni-role">Director of Engineering at Microsoft</p>
+                        <div class="alumni-details">
+                            <div class="detail-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Information Science</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Redmond, USA</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-briefcase"></i>
+                                <span>14 years experience</span>
+                            </div>
+                        </div>
+                        <a href="#" class="connect-btn">Connect</a>
+                    </div>
+                </div>
+
+                <div class="alumni-card">
+                    <div class="alumni-image">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800" alt="Aditi Malhotra">
+                        <div class="alumni-batch">2002</div>
+                    </div>
+                    <div class="alumni-content">
+                        <h3 class="alumni-name">Aditi Malhotra</h3>
+                        <p class="alumni-role">Vice President at Goldman Sachs</p>
+                        <div class="alumni-details">
+                            <div class="detail-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Electronics</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>New York, USA</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-briefcase"></i>
+                                <span>21 years experience</span>
+                            </div>
+                        </div>
+                        <a href="#" class="connect-btn">Connect</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="directory.html">Directory</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/CMRITSpeaks/"><i class="fab fa-facebook"></i></a>
+                    <a href="https://x.com/cmrit_bengaluru?lang=en"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/showcase/cmrit-alumni-association/"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/cmrit.bangalore/?hl=en"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>Email: info@cmrit.ac.in</p>
+                <p>Phone: +91 80 2852 4466</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Alumni Portal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+            this.classList.toggle('active');
+        });
+
+        // Search functionality
+        const searchInput = document.querySelector('.search-box input');
+        const filterSelects = document.querySelectorAll('.filter-select');
+        const alumniCards = document.querySelectorAll('.alumni-card');
+
+        function filterAlumni() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const batchFilter = filterSelects[0].value;
+            const deptFilter = filterSelects[1].value;
+
+            alumniCards.forEach(card => {
+                const name = card.querySelector('.alumni-name').textContent.toLowerCase();
+                const role = card.querySelector('.alumni-role').textContent.toLowerCase();
+                const location = card.querySelector('.detail-item:nth-child(2) span').textContent.toLowerCase();
+                const batch = card.querySelector('.alumni-batch').textContent;
+                const department = card.querySelector('.detail-item:first-child span').textContent.toLowerCase();
+
+                const matchesSearch = name.includes(searchTerm) || 
+                                   role.includes(searchTerm) || 
+                                   location.includes(searchTerm);
+                const matchesBatch = !batchFilter || batch === batchFilter;
+                const matchesDept = !deptFilter || department.includes(deptFilter.toLowerCase());
+
+                card.style.display = matchesSearch && matchesBatch && matchesDept ? 'block' : 'none';
+            });
+        }
+
+        searchInput.addEventListener('input', filterAlumni);
+        filterSelects.forEach(select => select.addEventListener('change', filterAlumni));
+
+        // Check authentication status
+        function checkAuth() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const authLink = document.getElementById('authLink');
+            
+            if (currentUser) {
+                authLink.innerHTML = `
+                    <a href="#" class="login-btn" onclick="logout()">Logout</a>
+                `;
+            } else {
+                authLink.innerHTML = `
+                    <a href="login.html" class="login-btn">Login</a>
+                `;
+            }
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+
+        // Check auth status when page loads
+        checkAuth();
+    </script>
+</body>
+</html>

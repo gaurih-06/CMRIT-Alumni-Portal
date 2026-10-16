@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Alumni Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .events-hero {
+            background: linear-gradient(rgba(26, 35, 126, 0.7), rgba(26, 35, 126, 0.7)), url('https://www.cmrit.ac.in/wp-content/uploads/2021/07/Industry-connects-banner.png');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 80px;
+        }
+
+        .events-content {
+            padding: 5rem 5%;
+        }
+
+        .events-section {
+            padding: 4rem 5%;
+            background-color: var(--light-gray);
+        }
+
+        .events-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .events-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .events-section h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .event-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .event-image {
+            position: relative;
+            height: 200px;
+        }
+
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .event-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .event-content {
+            padding: 2rem;
+        }
+
+        .event-header {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .event-date {
+            text-align: center;
+            min-width: 100px;
+            padding: 10px;
+            background: var(--primary-color);
+            color: var(--white);
+            border-radius: 10px;
+        }
+
+        .event-date .month {
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .event-date .day {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1;
+            margin: 5px 0;
+        }
+
+        .event-date .year {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .event-main {
+            flex: 1;
+        }
+
+        .event-schedule {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .event-schedule span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .event-meta {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            padding: 1rem 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .meta-item i {
+            color: var(--primary-color);
+        }
+
+        .register-btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--primary-color);
+            color: var(--white);
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .register-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .featured-event {
+            grid-column: 1 / -1;
+            border: 2px solid var(--secondary-color);
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .featured-event .event-tag {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            font-weight: bold;
+            padding: 8px 20px;
+        }
+
+        .featured-event .event-content {
+            padding: 2rem;
+        }
+
+        .featured-event .event-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .featured-event .register-btn {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            font-weight: bold;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+        }
+
+        .featured-event .register-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        @media (max-width: 768px) {
+            .event-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .event-date {
+                margin: 0 auto;
+            }
+
+            .event-meta {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .featured-event {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Cmrit.png" alt="logo">
+            <h1>Alumni Portal</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="events.html" class="active">Events</a></li>
+            <li><a href="directory.html">Directory</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li id="authLink"><a href="login.html" class="login-btn">Login</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="events-hero">
+        <div class="hero-content">
+            <h1>Upcoming Events</h1>
+            <p>Stay connected with your alma mater through exciting events and gatherings</p>
+        </div>
+    </header>
+
+    <!-- Events Content -->
+    <main class="events-content">
+        <!-- Events Section -->
+        <section class="events-section">
+            <div class="events-container">
+                <h2>Featured Events</h2>
+                <div class="events-grid">
+                    <!-- Highlighted Alumni Meetup -->
+                    <div class="event-card featured-event">
+                        <div class="event-image">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxlmQz5RGGGMJigzJwCYTGVRBsYbvXRYnvdQ&s" alt="Alumni Annual Meetup">
+                            <div class="event-tag">Featured Event</div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-header">
+                                <div class="event-date">
+                                    <div class="month">June</div>
+                                    <div class="day">15</div>
+                                    <div class="year">2025</div>
+                                </div>
+                                <div class="event-main">
+                                    <h3>Alumni Annual Meetup 2025</h3>
+                                    <p class="event-schedule">
+                                        <span><i class="far fa-clock"></i> 10:00 AM - 4:00 PM</span>
+                                        <span><i class="fas fa-map-marker-alt"></i> Dhwani Auditorium</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="event-description">Join us for our grand annual alumni meetup! Reconnect with old friends, network with fellow alumni, and celebrate our shared journey. The event includes keynote speeches, networking sessions, and a gala dinner.</p>
+                            <div class="event-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>All Alumni Welcome</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-utensils"></i>
+                                    <span>Gala Dinner</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-gift"></i>
+                                    <span>Special Gifts</span>
+                                </div>
+                            </div>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLScReqwvbKyK_bi3vEh-LeanaMKbqTWGqwlbuZ-iH0rBpYmLwg/viewform" target="_blank" class="register-btn">Register Now</a>
+                        </div>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-image">
+                            <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=800" alt="Sports Tournament">
+                            <div class="event-tag">Sports</div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-header">
+                                <div class="event-date">
+                                    <div class="month">July</div>
+                                    <div class="day">12</div>
+                                    <div class="year">2024</div>
+                                </div>
+                                <div class="event-main">
+                                    <h3>Alumni Cricket Tournament</h3>
+                                    <p class="event-schedule">
+                                        <span><i class="far fa-clock"></i> 9:00 AM onwards</span>
+                                        <span><i class="fas fa-map-marker-alt"></i> College Sports Ground</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="event-description">Join us for an exciting cricket tournament! Form your batch teams and compete for the Alumni Championship Trophy. Refreshments and lunch will be provided.</p>
+                            <div class="event-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>32 Teams Max</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-trophy"></i>
+                                    <span>Cash Prizes</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-utensils"></i>
+                                    <span>Lunch Included</span>
+                                </div>
+                            </div>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLScReqwvbKyK_bi3vEh-LeanaMKbqTWGqwlbuZ-iH0rBpYmLwg/viewform" target="_blank" class="register-btn">Register Your Team</a>
+                        </div>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-image">
+                            <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800" alt="Career Networking Night">
+                            <div class="event-tag">Networking</div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-header">
+                                <div class="event-date">
+                                    <div class="month">July</div>
+                                    <div class="day">20</div>
+                                    <div class="year">2025</div>
+                                </div>
+                                <div class="event-main">
+                                    <h3>Career Networking Night</h3>
+                                    <p class="event-schedule">
+                                        <span><i class="far fa-clock"></i> 6:00 PM - 9:00 PM</span>
+                                        <span><i class="fas fa-map-marker-alt"></i> Virtual Meet</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="event-description">An exclusive networking event for alumni to connect with industry leaders and explore career opportunities. Includes panel discussions, one-on-one mentoring sessions, and networking opportunities.</p>
+                            <div class="event-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-handshake"></i>
+                                    <span>Industry Leaders</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-comments"></i>
+                                    <span>Panel Discussion</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-coffee"></i>
+                                    <span>Refreshments</span>
+                                </div>
+                            </div>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLScReqwvbKyK_bi3vEh-LeanaMKbqTWGqwlbuZ-iH0rBpYmLwg/viewform" target="_blank" class="register-btn">Book Your Spot</a>
+                        </div>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-image">
+                            <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800" alt="Leadership Workshop">
+                            <div class="event-tag">Workshop</div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-header">
+                                <div class="event-date">
+                                    <div class="month">August</div>
+                                    <div class="day">10</div>
+                                    <div class="year">2025</div>
+                                </div>
+                                <div class="event-main">
+                                    <h3>Leadership Workshop</h3>
+                                    <p class="event-schedule">
+                                        <span><i class="far fa-clock"></i> 9:00 AM - 5:00 PM</span>
+                                        <span><i class="fas fa-map-marker-alt"></i> AV Hall</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="event-description">Enhance your leadership skills with this intensive workshop. Learn effective team management, strategic thinking, and decision-making techniques from industry experts.</p>
+                            <div class="event-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                    <span>Expert Led</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-certificate"></i>
+                                    <span>Certificate</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-lunch"></i>
+                                    <span>Lunch Included</span>
+                                </div>
+                            </div>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLScReqwvbKyK_bi3vEh-LeanaMKbqTWGqwlbuZ-iH0rBpYmLwg/viewform" target="_blank" class="register-btn">Register Now</a>
+                        </div>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-image">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800" alt="Power BI Workshop">
+                            <div class="event-tag">Technical</div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-header">
+                                <div class="event-date">
+                                    <div class="month">September</div>
+                                    <div class="day">05</div>
+                                    <div class="year">2025</div>
+                                </div>
+                                <div class="event-main">
+                                    <h3>Power BI Workshop</h3>
+                                    <p class="event-schedule">
+                                        <span><i class="far fa-clock"></i> 10:00 AM - 4:00 PM</span>
+                                        <span><i class="fas fa-map-marker-alt"></i> Computer Lab</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="event-description">Master data visualization and business intelligence with Power BI. This hands-on workshop covers data modeling, DAX formulas, and creating interactive dashboards.</p>
+                            <div class="event-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-laptop-code"></i>
+                                    <span>Hands-on</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-certificate"></i>
+                                    <span>Certificate</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-coffee"></i>
+                                    <span>Refreshments</span>
+                                </div>
+                            </div>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLScReqwvbKyK_bi3vEh-LeanaMKbqTWGqwlbuZ-iH0rBpYmLwg/viewform" target="_blank" class="register-btn">Enroll Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="directory.html">Directory</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/CMRITSpeaks/"><i class="fab fa-facebook"></i></a>
+                    <a href="https://x.com/cmrit_bengaluru?lang=en"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/showcase/cmrit-alumni-association/"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/cmrit.bangalore/?hl=en"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>Email: info@cmrit.ac.in</p>
+                <p>Phone: +91 80 2852 4466</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Alumni Portal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+            this.classList.toggle('active');
+        });
+
+        // Check authentication status
+        function checkAuth() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const authLink = document.getElementById('authLink');
+            
+            if (currentUser) {
+                authLink.innerHTML = `
+                    <a href="#" class="login-btn" onclick="logout()">Logout</a>
+                `;
+            } else {
+                authLink.innerHTML = `
+                    <a href="login.html" class="login-btn">Login</a>
+                `;
+            }
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+
+        // Check auth status when page loads
+        checkAuth();
+    </script>
+</body>
+</html>

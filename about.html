@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Alumni Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .about-hero {
+            background: linear-gradient(rgba(26, 35, 126, 0.7), rgba(26, 35, 126, 0.7)), url('https://educaops.eu/wp-content/uploads/2025/03/UX3z2z-b09-DZS-1.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 80px;
+        }
+
+        .about-content {
+            padding: 5rem 5%;
+        }
+
+        .about-section {
+            margin-bottom: 4rem;
+        }
+
+        .about-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .mission-values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .value-card {
+            background-color: var(--light-gray);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .value-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-member img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            object-fit: cover;
+        }
+
+        .team-member h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member p {
+            color: #666;
+        }
+
+        /* Gallery Styles */
+        .gallery-section {
+            margin-bottom: 4rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        .gallery-caption h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-caption p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Cmrit.png" alt="logo">
+            <h1>Alumni Portal</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="directory.html">Directory</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li id="authLink"><a href="login.html" class="login-btn">Login</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="about-hero">
+        <div class="hero-content">
+            <h1>About Us</h1>
+            <p>Learn about our mission, values, and the vibrant alumni community</p>
+        </div>
+    </header>
+
+    <!-- About Content -->
+    <main class="about-content">
+        <section class="about-section">
+            <h2>Our Story</h2>
+            <p>Every journey begins with a shared starting point — and ours began within the classrooms, corridors, and campus that shaped who we are today.
+
+                What started as a vibrant student community grew into something far greater: a family of dreamers, doers, and leaders spread across the globe. Over the years, as batches passed out and life took us in different directions, the bond we built during those formative years remained unshaken.This platform is not just a digital space — it's a living timeline of our shared legacy. It carries the stories of friendships that turned into partnerships, mentors who inspired future changemakers, and alumni who continue to raise the flag of our institution high in every field imaginable.
+
+                As we continue to evolve, we carry our roots with pride. This is our story — and it's still being written by every one of us.</p>
+        </section>
+
+        <section class="about-section">
+            <h2>Mission & Values</h2>
+            <div class="mission-values">
+                <div class="value-card">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Connection</h3>
+                    <p>Building and maintaining strong relationships between alumni and their alma mater</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Education</h3>
+                    <p>Promoting lifelong learning and professional development</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Community</h3>
+                    <p>Fostering a supportive network of alumni across the globe</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section gallery-section">
+            <h2>Our Memories</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://media.licdn.com/dms/image/v2/D5612AQFpiBkk6zud6A/article-inline_image-shrink_1000_1488/article-inline_image-shrink_1000_1488/0/1721199824043?e=2147483647&v=beta&t=tG7DN1HzYoUiaBF1-UKrAd1rUvujou6UdC4z1o5ZaG8" alt="Graduation Day">
+                    <div class="gallery-caption">
+                        <h3>Graduation Day</h3>
+                        <p>Celebrating achievements and new beginnings</p>
+                        <a href="https://www.cmrit.ac.in/media-coverage/#" class="event-link">Learn More</a>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/CMR_Institute_of_Technology_campus%2C_Whitefield%2C_Bangalore%2C_Karnataka%2C_India_%282014%29.jpg" alt="Campus Life">
+                    <div class="gallery-caption">
+                        <h3>Campus Life</h3>
+                        <p>Where memories were made</p>
+                        <a href="https://www.cmrit.ac.in/media-coverage/#" class="event-link">Learn More</a>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://pbs.twimg.com/media/ETdAuI-U0AA1dqE.jpg:large" alt="Alumni Meet">
+                    <div class="gallery-caption">
+                        <h3>Alumni Meet 2023</h3>
+                        <p>Reuniting with old friends</p>
+                        <a href="https://www.cmrit.ac.in/media-coverage/#" class="event-link">Learn More</a>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://www.cmrit.ac.in/wp-content/uploads/2021/07/Industry-connects-banner.png" alt="Technical Workshops">
+                    <div class="gallery-caption">
+                        <h3>Technical Workshops</h3>
+                        <p>Knowledge sharing sessions</p>
+                        <a href="https://www.cmrit.ac.in/media-coverage/#" class="event-link">Learn More</a>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://www.cmr.edu.in/wp-content/uploads/2017/08/On-the-ramp.jpg" alt="Cultural Events">
+                    <div class="gallery-caption">
+                        <h3>Cultural Events</h3>
+                        <p>Celebrating diversity and talent</p>
+                        <a href="https://www.cmrit.ac.in/media-coverage/#" class="event-link">Learn More</a>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://www.cmrit.ac.in/wp-content/uploads/2022/07/basketball-IMG-20220518-WA0036.jpg" alt="Sports Events">
+                    <div class="gallery-caption">
+                        <h3>Sports Events</h3>
+                        <p>Building team spirit</p>
+                        <a href="https://www.cmrit.ac.in/media-coverage/#" class="event-link">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="directory.html">Directory</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/CMRITSpeaks/"><i class="fab fa-facebook"></i></a>
+                    <a href="https://x.com/cmrit_bengaluru?lang=en"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/showcase/cmrit-alumni-association/"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/cmrit.bangalore/?hl=en"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>Email: info@cmrit.ac.in</p>
+                <p>Phone: +91 80 2852 4466</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Alumni Portal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+            this.classList.toggle('active');
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animation on scroll
+        window.addEventListener('scroll', function() {
+            const elements = document.querySelectorAll('.value-card, .team-member');
+            elements.forEach(element => {
+                const position = element.getBoundingClientRect();
+                if(position.top < window.innerHeight) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Check authentication status
+        function checkAuth() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const authLink = document.getElementById('authLink');
+            
+            if (currentUser) {
+                authLink.innerHTML = `
+                    <a href="#" class="login-btn" onclick="logout()">Logout</a>
+                `;
+            } else {
+                authLink.innerHTML = `
+                    <a href="login.html" class="login-btn">Login</a>
+                `;
+            }
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+
+        // Check auth status when page loads
+        checkAuth();
+    </script>
+</body>
+</html>

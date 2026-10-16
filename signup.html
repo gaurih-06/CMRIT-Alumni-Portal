@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Alumni Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .signup-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('https://www.cmrit.ac.in/wp-content/uploads/2021/07/about_overview-1.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 2rem;
+        }
+
+        .signup-content {
+            display: block;
+            max-width: 500px;
+            width: 90%;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .signup-form {
+            padding: 2.5rem;
+            background: var(--white);
+        }
+
+        .signup-form h2 {
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(26, 35, 126, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .login-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .login-link a:hover {
+            color: var(--secondary-color);
+        }
+
+        .home-link {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            background-color: var(--secondary-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+
+        .home-link i {
+            margin-right: 0.5rem;
+        }
+
+        .home-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .signup-content {
+                width: 95%;
+            }
+
+            .signup-form {
+                padding: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .home-link {
+                top: 1rem;
+                left: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="home-link">
+        <i class="fas fa-arrow-left"></i>
+        Back to Home
+    </a>
+    
+    <div class="signup-container">
+        <div class="signup-content">
+            <div class="signup-form">
+                <h2>Create Your Account</h2>
+                <form id="signupForm" onsubmit="return validateForm()">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="graduationYear">Graduation Year</label>
+                            <select id="graduationYear" name="graduationYear" required>
+                                <option value="">Select Year</option>
+                                <script>
+                                    const currentYear = new Date().getFullYear();
+                                    for (let year = currentYear; year >= 1980; year--) {
+                                        document.write(`<option value="${year}">${year}</option>`);
+                                    }
+                                </script>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="course">Course</label>
+                            <select id="course" name="course" required>
+                                <option value="">Select Course</option>
+                                <option value="btech">B.Tech</option>
+                                <option value="mtech">M.Tech</option>
+                                <option value="mba">MBA</option>
+                                <option value="bba">BBA</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Sign Up</button>
+                    <div class="login-link">
+                        <p>Already have an account? <a href="login.html">Login</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function validateForm(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return false;
+            }
+
+            // Create user object
+            const user = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                password: password,
+                graduationYear: document.getElementById('graduationYear').value,
+                course: document.getElementById('course').value
+            };
+
+            // Get existing users
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+
+            // Check if email already exists
+            if (users.some(u => u.email === user.email)) {
+                alert('Email already registered!');
+                return false;
+            }
+
+            // Add new user
+            users.push(user);
+            localStorage.setItem('users', JSON.stringify(users));
+
+            // Store as current user
+            localStorage.setItem('currentUser', JSON.stringify(user));
+
+            alert('Registration successful! Welcome to the Alumni Portal.');
+            window.location.href = 'index.html';
+            return false;
+        }
+
+        // Add event listener to form
+        document.getElementById('signupForm').addEventListener('submit', validateForm);
+    </script>
+</body>
+</html>
